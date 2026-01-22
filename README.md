@@ -1,5 +1,11 @@
 # Shadcn Editor
 
+## Sponsor
+
+If you find this project useful, please consider sponsoring its development. Your support helps maintain and improve this open-source project.
+
+For sponsorship inquiries, contact: htmujahid@gmail.com
+
 ## Usage
 
 1. Run this command to setup batteries included editor.
