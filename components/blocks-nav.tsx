@@ -1,6 +1,6 @@
 "use client"
 
-import Link from "next/link"
+import { Link } from "@/components/link"
 import { usePathname } from "next/navigation"
 
 import { ScrollArea, ScrollBar } from "@/registry/new-york-v4/ui/scroll-area"

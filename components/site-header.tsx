@@ -1,4 +1,4 @@
-import Link from "next/link"
+import { Link } from "@/components/link"
 
 import { getColors } from "@/lib/colors"
 import { siteConfig } from "@/lib/config"

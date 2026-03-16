@@ -1,4 +1,4 @@
-import Link from "next/link"
+import { Link } from "@/components/link"
 
 import { Atom } from "@/components/lo-fi/atom"
 

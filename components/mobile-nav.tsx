@@ -1,7 +1,8 @@
 "use client"
 
 import * as React from "react"
-import Link, { LinkProps } from "next/link"
+import { type LinkProps } from "next/link"
+import { Link } from "@/components/link"
 import { useRouter } from "next/navigation"
 
 import { showMcpDocs } from "@/lib/flags"
