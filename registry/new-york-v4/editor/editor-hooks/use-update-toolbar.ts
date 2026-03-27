@@ -1,5 +1,4 @@
-import { useEffect } from "react"
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext"
+import { useEffect, useRef } from "react"
 import {
   $getSelection,
   BaseSelection,
@@ -12,8 +11,9 @@ import { useToolbarContext } from "@/registry/new-york-v4/editor/context/toolbar
 export function useUpdateToolbarHandler(
   callback: (selection: BaseSelection) => void
 ) {
-  const [editor] = useLexicalComposerContext()
   const { activeEditor } = useToolbarContext()
+  const callbackRef = useRef(callback)
+  callbackRef.current = callback
 
   useEffect(() => {
     return activeEditor.registerCommand(
@@ -21,21 +21,20 @@ export function useUpdateToolbarHandler(
       () => {
         const selection = $getSelection()
         if (selection) {
-          callback(selection)
+          callbackRef.current(selection)
         }
         return false
       },
       COMMAND_PRIORITY_CRITICAL
     )
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [editor, callback])
+  }, [activeEditor])
 
   useEffect(() => {
     activeEditor.getEditorState().read(() => {
       const selection = $getSelection()
       if (selection) {
-        callback(selection)
+        callbackRef.current(selection)
       }
     })
-  }, [activeEditor, callback])
+  }, [activeEditor])
 }

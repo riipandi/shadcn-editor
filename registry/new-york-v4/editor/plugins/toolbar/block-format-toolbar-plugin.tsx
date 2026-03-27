@@ -3,17 +3,18 @@
 import { $isListNode, ListNode } from "@lexical/list"
 import { $isHeadingNode } from "@lexical/rich-text"
 import { $findMatchingParent, $getNearestNodeOfType } from "@lexical/utils"
+import { ChevronDownIcon } from "lucide-react"
 import { $isRangeSelection, $isRootOrShadowRoot, BaseSelection } from "lexical"
 
 import { useToolbarContext } from "@/registry/new-york-v4/editor/context/toolbar-context"
 import { useUpdateToolbarHandler } from "@/registry/new-york-v4/editor/editor-hooks/use-update-toolbar"
 import { blockTypeToBlockName } from "@/registry/new-york-v4/editor/plugins/toolbar/block-format/block-format-data"
+import { Button } from "@/registry/new-york-v4/ui/button"
 import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectTrigger,
-} from "@/registry/new-york-v4/ui/select"
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/registry/new-york-v4/ui/dropdown-menu"
 
 export function BlockFormatDropDown({
   children,
@@ -41,7 +42,6 @@ export function BlockFormatDropDown({
       const elementDOM = activeEditor.getElementByKey(elementKey)
 
       if (elementDOM !== null) {
-        // setSelectedElementKey(elementKey);
         if ($isListNode(element)) {
           const parentList = $getNearestNodeOfType<ListNode>(
             anchorNode,
@@ -65,20 +65,18 @@ export function BlockFormatDropDown({
 
   useUpdateToolbarHandler($updateToolbar)
 
+  const { label, icon } = blockTypeToBlockName[blockType] ?? blockTypeToBlockName.paragraph
+
   return (
-    <Select
-      value={blockType}
-      onValueChange={(value) => {
-        setBlockType(value as keyof typeof blockTypeToBlockName)
-      }}
-    >
-      <SelectTrigger className="!h-8 w-min gap-1">
-        {blockTypeToBlockName[blockType].icon}
-        <span>{blockTypeToBlockName[blockType].label}</span>
-      </SelectTrigger>
-      <SelectContent>
-        <SelectGroup>{children}</SelectGroup>
-      </SelectContent>
-    </Select>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" size="sm" className="gap-1 px-2">
+          {icon}
+          <span className="text-sm">{label}</span>
+          <ChevronDownIcon className="size-3" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>{children}</DropdownMenuContent>
+    </DropdownMenu>
   )
 }

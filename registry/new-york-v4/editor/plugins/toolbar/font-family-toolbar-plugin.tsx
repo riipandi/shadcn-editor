@@ -6,16 +6,17 @@ import {
   $patchStyleText,
 } from "@lexical/selection"
 import { $getSelection, $isRangeSelection, BaseSelection } from "lexical"
-import { TypeIcon } from "lucide-react"
+import { ChevronDownIcon, TypeIcon } from "lucide-react"
 
 import { useToolbarContext } from "@/registry/new-york-v4/editor/context/toolbar-context"
 import { useUpdateToolbarHandler } from "@/registry/new-york-v4/editor/editor-hooks/use-update-toolbar"
+import { Button } from "@/registry/new-york-v4/ui/button"
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-} from "@/registry/new-york-v4/ui/select"
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/registry/new-york-v4/ui/dropdown-menu"
 
 const FONT_FAMILY_OPTIONS = [
   "Arial",
@@ -32,13 +33,13 @@ export function FontFamilyToolbarPlugin() {
 
   const { activeEditor } = useToolbarContext()
 
-  const $updateToolbar = (selection: BaseSelection) => {
+  const $updateToolbar = useCallback((selection: BaseSelection) => {
     if ($isRangeSelection(selection)) {
       setFontFamily(
         $getSelectionStyleValueForProperty(selection, "font-family", "Arial")
       )
     }
-  }
+  }, [])
 
   useUpdateToolbarHandler($updateToolbar)
 
@@ -52,6 +53,9 @@ export function FontFamilyToolbarPlugin() {
           })
         }
       })
+      // Selection doesn't move when only inline styles change, so
+      // SELECTION_CHANGE_COMMAND won't run — sync label here.
+      setFontFamily(option)
     },
     [activeEditor, style]
   )
@@ -59,29 +63,30 @@ export function FontFamilyToolbarPlugin() {
   const buttonAriaLabel = "Formatting options for font family"
 
   return (
-    <Select
-      value={fontFamily}
-      onValueChange={(value) => {
-        setFontFamily(value)
-        handleClick(value)
-      }}
-      aria-label={buttonAriaLabel}
-    >
-      <SelectTrigger className="!h-8 w-min gap-1">
-        <TypeIcon className="size-4" />
-        <span style={{ fontFamily }}>{fontFamily}</span>
-      </SelectTrigger>
-      <SelectContent>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant="outline"
+          size="sm"
+          className="h-8 w-min gap-1 px-2"
+          aria-label={buttonAriaLabel}
+        >
+          <TypeIcon className="size-4" />
+          <span style={{ fontFamily }}>{fontFamily}</span>
+          <ChevronDownIcon className="size-3" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-40" align="start">
         {FONT_FAMILY_OPTIONS.map((option) => (
-          <SelectItem
+          <DropdownMenuItem
             key={option}
-            value={option}
             style={{ fontFamily: option }}
+            onClick={() => handleClick(option)}
           >
             {option}
-          </SelectItem>
+          </DropdownMenuItem>
         ))}
-      </SelectContent>
-    </Select>
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }

@@ -4,7 +4,7 @@ import { $getSelection } from "lexical"
 
 import { useToolbarContext } from "@/registry/new-york-v4/editor/context/toolbar-context"
 import { blockTypeToBlockName } from "@/registry/new-york-v4/editor/plugins/toolbar/block-format/block-format-data"
-import { SelectItem } from "@/registry/new-york-v4/ui/select"
+import { DropdownMenuItem } from "@/registry/new-york-v4/ui/dropdown-menu"
 
 const BLOCK_FORMAT_VALUE = "quote"
 
@@ -21,11 +21,11 @@ export function FormatQuote() {
   }
 
   return (
-    <SelectItem value="quote" onPointerDown={formatQuote}>
+    <DropdownMenuItem onClick={formatQuote}>
       <div className="flex items-center gap-1 font-normal">
         {blockTypeToBlockName[BLOCK_FORMAT_VALUE].icon}
         {blockTypeToBlockName[BLOCK_FORMAT_VALUE].label}
       </div>
-    </SelectItem>
+    </DropdownMenuItem>
   )
 }

@@ -4,7 +4,7 @@ import { $getSelection, $isRangeSelection } from "lexical"
 
 import { useToolbarContext } from "@/registry/new-york-v4/editor/context/toolbar-context"
 import { blockTypeToBlockName } from "@/registry/new-york-v4/editor/plugins/toolbar/block-format/block-format-data"
-import { SelectItem } from "@/registry/new-york-v4/ui/select"
+import { DropdownMenuItem } from "@/registry/new-york-v4/ui/dropdown-menu"
 
 const BLOCK_FORMAT_VALUE = "code"
 
@@ -34,11 +34,11 @@ export function FormatCodeBlock() {
   }
 
   return (
-    <SelectItem value="code" onPointerDown={formatCode}>
+    <DropdownMenuItem onClick={formatCode}>
       <div className="flex items-center gap-1 font-normal">
         {blockTypeToBlockName[BLOCK_FORMAT_VALUE].icon}
         {blockTypeToBlockName[BLOCK_FORMAT_VALUE].label}
       </div>
-    </SelectItem>
+    </DropdownMenuItem>
   )
 }

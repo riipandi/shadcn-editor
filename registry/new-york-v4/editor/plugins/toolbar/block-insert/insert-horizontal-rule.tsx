@@ -4,23 +4,21 @@ import { INSERT_HORIZONTAL_RULE_COMMAND } from "@lexical/react/LexicalHorizontal
 import { ScissorsIcon } from "lucide-react"
 
 import { useToolbarContext } from "@/registry/new-york-v4/editor/context/toolbar-context"
-import { SelectItem } from "@/registry/new-york-v4/ui/select"
+import { DropdownMenuItem } from "@/registry/new-york-v4/ui/dropdown-menu"
 
 export function InsertHorizontalRule() {
   const { activeEditor } = useToolbarContext()
 
   return (
-    <SelectItem
-      value="horizontal-rule"
-      onPointerUp={() =>
+    <DropdownMenuItem
+      onClick={() =>
         activeEditor.dispatchCommand(INSERT_HORIZONTAL_RULE_COMMAND, undefined)
       }
-      className=""
     >
       <div className="flex items-center gap-1">
         <ScissorsIcon className="size-4" />
         <span>Horizontal Rule</span>
       </div>
-    </SelectItem>
+    </DropdownMenuItem>
   )
 }
