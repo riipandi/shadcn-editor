@@ -1,9 +1,9 @@
 import { registryItemSchema, type Registry } from "shadcn/schema"
 import { z } from "zod"
 
-import { blocks } from "@/registry/registry-blocks"
-import { examples } from "@/registry/registry-examples"
-import { ui } from "@/registry/registry-ui"
+import { blocks } from "@/registry/new-york-v4/blocks/_registry"
+import { examples } from "@/registry/new-york-v4/examples/_registry"
+import { ui } from "@/registry/new-york-v4/editor/_registry"
 
 // Shared between index and style for backward compatibility.
 // const NEW_YORK_V4_STYLE = {
