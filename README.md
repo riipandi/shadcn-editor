@@ -1,73 +1,21 @@
-# Shadcn Editor
+# React + TypeScript + Vite + shadcn/ui
 
-## Sponsor
+This is a template for a new Vite project with React, TypeScript, and shadcn/ui.
 
-If you find this project useful, please consider sponsoring its development. Your support helps maintain and improve this open-source project.
+## Adding components
 
-For sponsorship inquiries, contact: htmujahid@gmail.com
-
-## Usage
-
-1. Run this command to setup batteries included editor.
+To add components to your app, run the following command:
 
 ```bash
-npx shadcn@latest add @shadcn-editor/editor-x
+npx shadcn@latest add button
 ```
 
-2. Use the `Editor` component in your project.
+This will place the ui components in the `src/components` directory.
+
+## Using components
+
+To use the components in your app, import them as follows:
 
 ```tsx
-'use client'
-
-import { useState } from 'react'
-
-import { SerializedEditorState } from 'lexical'
-
-import { Editor } from '@/components/blocks/editor-x/editor'
-
-const initialValue = {
-  root: {
-    children: [
-      {
-        children: [
-          {
-            detail: 0,
-            format: 0,
-            mode: 'normal',
-            style: '',
-            text: 'Hello World 🚀',
-            type: 'text',
-            version: 1,
-          },
-        ],
-        direction: 'ltr',
-        format: '',
-        indent: 0,
-        type: 'paragraph',
-        version: 1,
-      },
-    ],
-    direction: 'ltr',
-    format: '',
-    indent: 0,
-    type: 'root',
-    version: 1,
-  },
-} as unknown as SerializedEditorState
-
-export function EditorDemo() {
-  const [editorState, setEditorState] =
-    useState<SerializedEditorState>(initialValue)
-
-  return (
-    <Editor
-      editorSerializedState={editorState}
-      onSerializedChange={(value) => setEditorState(value)}
-    />
-  )
-}
+import { Button } from "@/components/ui/button"
 ```
-
-## Start History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=htmujahid/shadcn-editor&type=Date)](https://star-history.com/#bytebase/star-history&Date)
