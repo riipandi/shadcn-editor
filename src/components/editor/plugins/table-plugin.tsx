@@ -6,16 +6,16 @@
  *
  */
 
-import type { JSX } from 'react';
+import type { JSX } from "react";
 
-import { INSERT_TABLE_COMMAND } from '@lexical/table';
-import { type LexicalEditor } from 'lexical';
-import { useEffect, useState } from 'react';
+import { INSERT_TABLE_COMMAND } from "@lexical/table";
+import { type LexicalEditor } from "lexical";
+import { useEffect, useState } from "react";
 
-import { Button } from '@/components/ui/button';
-import { DialogFooter } from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { Button } from "@/components/ui/button";
+import { DialogFooter } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 export function InsertTableDialog({
   activeEditor,
@@ -24,8 +24,8 @@ export function InsertTableDialog({
   activeEditor: LexicalEditor;
   onClose: () => void;
 }): JSX.Element {
-  const [rows, setRows] = useState('5');
-  const [columns, setColumns] = useState('5');
+  const [rows, setRows] = useState("5");
+  const [columns, setColumns] = useState("5");
   const [isDisabled, setIsDisabled] = useState(true);
 
   useEffect(() => {

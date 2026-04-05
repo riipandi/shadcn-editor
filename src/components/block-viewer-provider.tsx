@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import * as React from "react"
+import * as React from "react";
 
 export type ToolbarItemKey =
   | "undoRedo"
@@ -12,7 +12,7 @@ export type ToolbarItemKey =
   | "fontColor"
   | "fontBackground"
   | "fontAlignment"
-  | "blockInsert"
+  | "blockInsert";
 
 export type FooterItemKey =
   | "characterCount"
@@ -22,7 +22,7 @@ export type FooterItemKey =
   | "markdownToggle"
   | "viewOnly"
   | "clearEditor"
-  | "treeView"
+  | "treeView";
 
 export type PluginItemKey =
   | "componentPicker"
@@ -32,6 +32,12 @@ export type PluginItemKey =
   | "draggableBlock"
   | "autoComplete"
   | "autoLink"
+  | "floatingTextToolbar"
+  | "floatingLinkToolbar"
+  | "contextMenu"
+  | "specialText"
+  | "tabFocus"
+  | "tabIndentation";
 
 export type BlockFormatItemKey =
   | "paragraph"
@@ -42,14 +48,36 @@ export type BlockFormatItemKey =
   | "bulletList"
   | "checkList"
   | "codeBlock"
-  | "blockquote"
+  | "blockquote";
 
 export type BlockInsertItemKey =
   | "divider"
   | "image"
   | "table"
   | "columnsLayout"
-  | "embeds"
+  | "embeds";
+
+export type ComponentPickerItemKey =
+  | "paragraph"
+  | "h1"
+  | "h2"
+  | "h3"
+  | "numberList"
+  | "bulletList"
+  | "checkList"
+  | "blockquote"
+  | "codeBlock"
+  | "divider"
+  | "image"
+  | "table"
+  | "columnsLayout"
+  | "tweetEmbed"
+  | "youtubeEmbed"
+  | "dateTime"
+  | "alignLeft"
+  | "alignCenter"
+  | "alignRight"
+  | "alignJustify";
 
 export const TOOLBAR_ITEM_LABELS: Record<ToolbarItemKey, string> = {
   undoRedo: "Undo / Redo",
@@ -63,7 +91,7 @@ export const TOOLBAR_ITEM_LABELS: Record<ToolbarItemKey, string> = {
   fontBackground: "Font Background",
   fontAlignment: "Font Alignment",
   blockInsert: "Block Insert",
-}
+};
 
 export const FOOTER_ITEM_LABELS: Record<FooterItemKey, string> = {
   characterCount: "Character Count",
@@ -74,7 +102,7 @@ export const FOOTER_ITEM_LABELS: Record<FooterItemKey, string> = {
   viewOnly: "View Only",
   clearEditor: "Clear Editor",
   treeView: "Tree View",
-}
+};
 
 export const PLUGIN_ITEM_LABELS: Record<PluginItemKey, string> = {
   componentPicker: "Component Picker",
@@ -84,7 +112,13 @@ export const PLUGIN_ITEM_LABELS: Record<PluginItemKey, string> = {
   draggableBlock: "Draggable Block",
   autoComplete: "Auto Complete",
   autoLink: "Auto Link",
-}
+  floatingTextToolbar: "Floating Text Toolbar",
+  floatingLinkToolbar: "Floating Link Toolbar",
+  contextMenu: "Context Menu",
+  specialText: "Special Text",
+  tabFocus: "Tab Focus",
+  tabIndentation: "Tab Indentation",
+};
 
 export const BLOCK_FORMAT_ITEM_LABELS: Record<BlockFormatItemKey, string> = {
   paragraph: "Paragraph",
@@ -96,7 +130,7 @@ export const BLOCK_FORMAT_ITEM_LABELS: Record<BlockFormatItemKey, string> = {
   checkList: "Check List",
   codeBlock: "Code Block",
   blockquote: "Blockquote",
-}
+};
 
 export const BLOCK_INSERT_ITEM_LABELS: Record<BlockInsertItemKey, string> = {
   divider: "Horizontal Rule",
@@ -104,24 +138,52 @@ export const BLOCK_INSERT_ITEM_LABELS: Record<BlockInsertItemKey, string> = {
   table: "Table",
   columnsLayout: "Columns Layout",
   embeds: "Embeds",
-}
+};
+
+export const COMPONENT_PICKER_ITEM_LABELS: Record<
+  ComponentPickerItemKey,
+  string
+> = {
+  paragraph: "Paragraph",
+  h1: "Heading 1",
+  h2: "Heading 2",
+  h3: "Heading 3",
+  numberList: "Numbered List",
+  bulletList: "Bullet List",
+  checkList: "Check List",
+  blockquote: "Blockquote",
+  codeBlock: "Code Block",
+  divider: "Horizontal Rule",
+  image: "Image",
+  table: "Table",
+  columnsLayout: "Columns Layout",
+  tweetEmbed: "Tweet Embed",
+  youtubeEmbed: "YouTube Embed",
+  dateTime: "Date / Time",
+  alignLeft: "Align Left",
+  alignCenter: "Align Center",
+  alignRight: "Align Right",
+  alignJustify: "Align Justify",
+};
 
 type BlockViewerContextType = {
-  toolbarItems: Record<ToolbarItemKey, boolean>
-  footerItems: Record<FooterItemKey, boolean>
-  pluginItems: Record<PluginItemKey, boolean>
-  blockFormatItems: Record<BlockFormatItemKey, boolean>
-  blockInsertItems: Record<BlockInsertItemKey, boolean>
-  toggleToolbarItem: (key: ToolbarItemKey) => void
-  toggleFooterItem: (key: FooterItemKey) => void
-  togglePluginItem: (key: PluginItemKey) => void
-  toggleBlockFormatItem: (key: BlockFormatItemKey) => void
-  toggleBlockInsertItem: (key: BlockInsertItemKey) => void
-}
+  toolbarItems: Record<ToolbarItemKey, boolean>;
+  footerItems: Record<FooterItemKey, boolean>;
+  pluginItems: Record<PluginItemKey, boolean>;
+  blockFormatItems: Record<BlockFormatItemKey, boolean>;
+  blockInsertItems: Record<BlockInsertItemKey, boolean>;
+  componentPickerItems: Record<ComponentPickerItemKey, boolean>;
+  toggleToolbarItem: (key: ToolbarItemKey) => void;
+  toggleFooterItem: (key: FooterItemKey) => void;
+  togglePluginItem: (key: PluginItemKey) => void;
+  toggleBlockFormatItem: (key: BlockFormatItemKey) => void;
+  toggleBlockInsertItem: (key: BlockInsertItemKey) => void;
+  toggleComponentPickerItem: (key: ComponentPickerItemKey) => void;
+};
 
 const BlockViewerContext = React.createContext<BlockViewerContextType | null>(
-  null
-)
+  null,
+);
 
 function BlockViewerProvider({ children }: { children: React.ReactNode }) {
   const [toolbarItems, setToolbarItems] = React.useState<
@@ -138,7 +200,7 @@ function BlockViewerProvider({ children }: { children: React.ReactNode }) {
     fontBackground: true,
     fontAlignment: true,
     blockInsert: true,
-  })
+  });
 
   const [footerItems, setFooterItems] = React.useState<
     Record<FooterItemKey, boolean>
@@ -151,7 +213,7 @@ function BlockViewerProvider({ children }: { children: React.ReactNode }) {
     viewOnly: true,
     clearEditor: true,
     treeView: true,
-  })
+  });
 
   const [pluginItems, setPluginItems] = React.useState<
     Record<PluginItemKey, boolean>
@@ -163,7 +225,13 @@ function BlockViewerProvider({ children }: { children: React.ReactNode }) {
     draggableBlock: true,
     autoComplete: true,
     autoLink: true,
-  })
+    floatingTextToolbar: true,
+    floatingLinkToolbar: true,
+    contextMenu: true,
+    specialText: true,
+    tabFocus: true,
+    tabIndentation: true,
+  });
 
   const [blockFormatItems, setBlockFormatItems] = React.useState<
     Record<BlockFormatItemKey, boolean>
@@ -177,7 +245,7 @@ function BlockViewerProvider({ children }: { children: React.ReactNode }) {
     checkList: true,
     codeBlock: true,
     blockquote: true,
-  })
+  });
 
   const [blockInsertItems, setBlockInsertItems] = React.useState<
     Record<BlockInsertItemKey, boolean>
@@ -187,27 +255,59 @@ function BlockViewerProvider({ children }: { children: React.ReactNode }) {
     table: true,
     columnsLayout: true,
     embeds: true,
-  })
+  });
+
+  const [componentPickerItems, setComponentPickerItems] = React.useState<
+    Record<ComponentPickerItemKey, boolean>
+  >({
+    paragraph: true,
+    h1: true,
+    h2: true,
+    h3: true,
+    numberList: true,
+    bulletList: true,
+    checkList: true,
+    blockquote: true,
+    codeBlock: true,
+    divider: true,
+    image: true,
+    table: true,
+    columnsLayout: true,
+    tweetEmbed: true,
+    youtubeEmbed: true,
+    dateTime: true,
+    alignLeft: true,
+    alignCenter: true,
+    alignRight: true,
+    alignJustify: true,
+  });
 
   const toggleToolbarItem = React.useCallback((key: ToolbarItemKey) => {
-    setToolbarItems((prev) => ({ ...prev, [key]: !prev[key] }))
-  }, [])
+    setToolbarItems((prev) => ({ ...prev, [key]: !prev[key] }));
+  }, []);
 
   const toggleFooterItem = React.useCallback((key: FooterItemKey) => {
-    setFooterItems((prev) => ({ ...prev, [key]: !prev[key] }))
-  }, [])
+    setFooterItems((prev) => ({ ...prev, [key]: !prev[key] }));
+  }, []);
 
   const togglePluginItem = React.useCallback((key: PluginItemKey) => {
-    setPluginItems((prev) => ({ ...prev, [key]: !prev[key] }))
-  }, [])
+    setPluginItems((prev) => ({ ...prev, [key]: !prev[key] }));
+  }, []);
 
   const toggleBlockFormatItem = React.useCallback((key: BlockFormatItemKey) => {
-    setBlockFormatItems((prev) => ({ ...prev, [key]: !prev[key] }))
-  }, [])
+    setBlockFormatItems((prev) => ({ ...prev, [key]: !prev[key] }));
+  }, []);
 
   const toggleBlockInsertItem = React.useCallback((key: BlockInsertItemKey) => {
-    setBlockInsertItems((prev) => ({ ...prev, [key]: !prev[key] }))
-  }, [])
+    setBlockInsertItems((prev) => ({ ...prev, [key]: !prev[key] }));
+  }, []);
+
+  const toggleComponentPickerItem = React.useCallback(
+    (key: ComponentPickerItemKey) => {
+      setComponentPickerItems((prev) => ({ ...prev, [key]: !prev[key] }));
+    },
+    [],
+  );
 
   return (
     <BlockViewerContext.Provider
@@ -217,24 +317,26 @@ function BlockViewerProvider({ children }: { children: React.ReactNode }) {
         pluginItems,
         blockFormatItems,
         blockInsertItems,
+        componentPickerItems,
         toggleToolbarItem,
         toggleFooterItem,
         togglePluginItem,
         toggleBlockFormatItem,
         toggleBlockInsertItem,
+        toggleComponentPickerItem,
       }}
     >
       {children}
     </BlockViewerContext.Provider>
-  )
+  );
 }
 
 function useBlockViewer() {
-  const context = React.useContext(BlockViewerContext)
+  const context = React.useContext(BlockViewerContext);
   if (!context) {
-    throw new Error("useBlockViewer must be used within a BlockViewerProvider")
+    throw new Error("useBlockViewer must be used within a BlockViewerProvider");
   }
-  return context
+  return context;
 }
 
-export { BlockViewerProvider, useBlockViewer }
+export { BlockViewerProvider, useBlockViewer };

@@ -1,21 +1,21 @@
-import { Check, Terminal } from "lucide-react"
+import { Check, Terminal } from "lucide-react";
 
-import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
-import { useSearchParams } from "@/hooks/use-search-params"
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
+import { useSearchParams } from "@/hooks/use-search-params";
 
-import { Button } from "./ui/button"
-import { Separator } from "./ui/separator"
-import { Tabs, TabsList, TabsTrigger } from "./ui/tabs"
+import { Button } from "./ui/button";
+import { Separator } from "./ui/separator";
+import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 
 export function BlockViewerToolbar() {
   const item = {
     name: "@shadcn-editor/editor-x",
     description:
       "A rich text editor built on Lexical with plugins, nodes, extensions, and toolbar support.",
-  }
-  const { copyToClipboard, isCopied } = useCopyToClipboard()
-  const [params, setParams] = useSearchParams({ view: "preview" })
-  const view = params.view as "preview" | "code"
+  };
+  const { copyToClipboard, isCopied } = useCopyToClipboard();
+  const [params, setParams] = useSearchParams({ view: "preview" });
+  const view = params.view as "preview" | "code";
 
   return (
     <div className="flex w-full shrink-0 overflow-x-auto items-center gap-2">
@@ -38,7 +38,7 @@ export function BlockViewerToolbar() {
           className="w-fit gap-1 px-2 shadow-none"
           size="sm"
           onClick={() => {
-            copyToClipboard(`npx shadcn@latest add ${item.name}`)
+            copyToClipboard(`npx shadcn@latest add ${item.name}`);
           }}
         >
           {isCopied ? <Check /> : <Terminal />}
@@ -46,5 +46,5 @@ export function BlockViewerToolbar() {
         </Button>
       </div>
     </div>
-  )
+  );
 }

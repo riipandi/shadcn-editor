@@ -1,9 +1,9 @@
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext"
-import { CLEAR_EDITOR_COMMAND } from "lexical"
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import { CLEAR_EDITOR_COMMAND } from "lexical";
 
-import { Trash2Icon } from "lucide-react"
+import { Trash2Icon } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogClose,
@@ -13,15 +13,15 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+} from "@/components/ui/dialog";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/components/ui/tooltip"
+} from "@/components/ui/tooltip";
 
 export function ClearEditorActionPlugin() {
-  const [editor] = useLexicalComposerContext()
+  const [editor] = useLexicalComposerContext();
 
   return (
     <Dialog>
@@ -52,7 +52,7 @@ export function ClearEditorActionPlugin() {
             <Button
               variant="destructive"
               onClick={() => {
-                editor.dispatchCommand(CLEAR_EDITOR_COMMAND, undefined)
+                editor.dispatchCommand(CLEAR_EDITOR_COMMAND, undefined);
               }}
             >
               Clear
@@ -61,5 +61,5 @@ export function ClearEditorActionPlugin() {
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

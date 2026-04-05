@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
-import { Check, Copy } from "lucide-react"
+import { Check, Copy } from "lucide-react";
 
-import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
-import { highlightCode } from "@/lib/highlight-code"
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
+import { highlightCode } from "@/lib/highlight-code";
 
-import { Button } from "./ui/button"
+import { Button } from "./ui/button";
 
 interface CodeViewerProps {
-  code: string
-  language?: string
-  filename?: string
+  code: string;
+  language?: string;
+  filename?: string;
 }
 
 export function CodeViewer({
@@ -18,20 +18,20 @@ export function CodeViewer({
   language = "tsx",
   filename,
 }: CodeViewerProps) {
-  const [html, setHtml] = useState<string>("")
-  const { copyToClipboard, isCopied } = useCopyToClipboard()
+  const [html, setHtml] = useState<string>("");
+  const { copyToClipboard, isCopied } = useCopyToClipboard();
 
   useEffect(() => {
-    let cancelled = false
+    let cancelled = false;
     highlightCode(code, language).then((result) => {
       if (!cancelled) {
-        setHtml(result)
+        setHtml(result);
       }
-    })
+    });
     return () => {
-      cancelled = true
-    }
-  }, [code, language])
+      cancelled = true;
+    };
+  }, [code, language]);
 
   return (
     <figure
@@ -59,5 +59,5 @@ export function CodeViewer({
         className="no-scrollbar overflow-y-auto flex-1 text-[13px]"
       />
     </figure>
-  )
+  );
 }

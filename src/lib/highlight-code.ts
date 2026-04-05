@@ -1,4 +1,4 @@
-import { codeToHtml } from "shiki"
+import { codeToHtml } from "shiki";
 
 export async function highlightCode(code: string, language: string = "tsx") {
   return codeToHtml(code, {
@@ -11,15 +11,15 @@ export async function highlightCode(code: string, language: string = "tsx") {
       {
         pre(node) {
           node.properties["class"] =
-            "no-scrollbar min-w-0 overflow-x-auto overflow-y-auto overscroll-x-contain overscroll-y-auto px-4 py-3.5 outline-none has-[[data-highlighted-line]]:px-0 has-[[data-line-numbers]]:px-0 has-[[data-slot=tabs]]:p-0 !bg-transparent"
+            "no-scrollbar min-w-0 overflow-x-auto overflow-y-auto overscroll-x-contain overscroll-y-auto px-4 py-3.5 outline-none has-[[data-highlighted-line]]:px-0 has-[[data-line-numbers]]:px-0 has-[[data-slot=tabs]]:p-0 !bg-transparent";
         },
         code(node) {
-          node.properties["data-line-numbers"] = ""
+          node.properties["data-line-numbers"] = "";
         },
         line(node) {
-          node.properties["data-line"] = ""
+          node.properties["data-line"] = "";
         },
       },
     ],
-  })
+  });
 }

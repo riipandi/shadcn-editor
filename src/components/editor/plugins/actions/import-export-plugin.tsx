@@ -1,17 +1,17 @@
-import { exportFile, importFile } from "@lexical/file"
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext"
+import { exportFile, importFile } from "@lexical/file";
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 
-import { DownloadIcon, UploadIcon } from "lucide-react"
+import { DownloadIcon, UploadIcon } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/components/ui/tooltip"
+} from "@/components/ui/tooltip";
 
 export function ImportExportPlugin() {
-  const [editor] = useLexicalComposerContext()
+  const [editor] = useLexicalComposerContext();
   return (
     <>
       <Tooltip>
@@ -51,5 +51,5 @@ export function ImportExportPlugin() {
         <TooltipContent>Export Content</TooltipContent>
       </Tooltip>
     </>
-  )
+  );
 }

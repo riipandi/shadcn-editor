@@ -1,18 +1,24 @@
-import { FieldGroup, FieldSeparator } from "@/components/ui/field"
+import { FieldGroup, FieldSeparator } from "@/components/ui/field";
 import {
   Picker,
   PickerCheckboxItem,
   PickerContent,
   PickerTrigger,
-} from "@/components/ui/picker"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Sidebar, SidebarContent, SidebarHeader } from "@/components/ui/sidebar"
+} from "@/components/ui/picker";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarHeader,
+} from "@/components/ui/sidebar";
 
 import {
   BLOCK_FORMAT_ITEM_LABELS,
   BLOCK_INSERT_ITEM_LABELS,
   type BlockFormatItemKey,
   type BlockInsertItemKey,
+  COMPONENT_PICKER_ITEM_LABELS,
+  type ComponentPickerItemKey,
   FOOTER_ITEM_LABELS,
   type FooterItemKey,
   PLUGIN_ITEM_LABELS,
@@ -20,20 +26,20 @@ import {
   TOOLBAR_ITEM_LABELS,
   type ToolbarItemKey,
   useBlockViewer,
-} from "./block-viewer"
+} from "./block-viewer-provider";
 
 function enabledLabel(enabled: number, total: number) {
-  return enabled === total ? "All enabled" : `${enabled} of ${total} enabled`
+  return enabled === total ? "All enabled" : `${enabled} of ${total} enabled`;
 }
 
 function ToolbarPicker() {
-  const { toolbarItems, toggleToolbarItem } = useBlockViewer()
-  const allKeys = Object.keys(TOOLBAR_ITEM_LABELS) as ToolbarItemKey[]
-  const enabled = allKeys.filter((k) => toolbarItems[k]).length
+  const { toolbarItems, toggleToolbarItem } = useBlockViewer();
+  const allKeys = Object.keys(TOOLBAR_ITEM_LABELS) as ToolbarItemKey[];
+  const enabled = allKeys.filter((k) => toolbarItems[k]).length;
 
   return (
     <Picker>
-      <PickerTrigger label="Toolbar" disabled>
+      <PickerTrigger label="Toolbar">
         {enabledLabel(enabled, allKeys.length)}
       </PickerTrigger>
       <PickerContent>
@@ -48,17 +54,17 @@ function ToolbarPicker() {
         ))}
       </PickerContent>
     </Picker>
-  )
+  );
 }
 
 function BlockFormatPicker() {
-  const { blockFormatItems, toggleBlockFormatItem } = useBlockViewer()
-  const allKeys = Object.keys(BLOCK_FORMAT_ITEM_LABELS) as BlockFormatItemKey[]
-  const enabled = allKeys.filter((k) => blockFormatItems[k]).length
+  const { blockFormatItems, toggleBlockFormatItem } = useBlockViewer();
+  const allKeys = Object.keys(BLOCK_FORMAT_ITEM_LABELS) as BlockFormatItemKey[];
+  const enabled = allKeys.filter((k) => blockFormatItems[k]).length;
 
   return (
     <Picker>
-      <PickerTrigger label="Block Format" disabled>
+      <PickerTrigger label="Block Format">
         {enabledLabel(enabled, allKeys.length)}
       </PickerTrigger>
       <PickerContent>
@@ -73,17 +79,17 @@ function BlockFormatPicker() {
         ))}
       </PickerContent>
     </Picker>
-  )
+  );
 }
 
 function BlockInsertPicker() {
-  const { blockInsertItems, toggleBlockInsertItem } = useBlockViewer()
-  const allKeys = Object.keys(BLOCK_INSERT_ITEM_LABELS) as BlockInsertItemKey[]
-  const enabled = allKeys.filter((k) => blockInsertItems[k]).length
+  const { blockInsertItems, toggleBlockInsertItem } = useBlockViewer();
+  const allKeys = Object.keys(BLOCK_INSERT_ITEM_LABELS) as BlockInsertItemKey[];
+  const enabled = allKeys.filter((k) => blockInsertItems[k]).length;
 
   return (
     <Picker>
-      <PickerTrigger label="Block Insert" disabled>
+      <PickerTrigger label="Block Insert">
         {enabledLabel(enabled, allKeys.length)}
       </PickerTrigger>
       <PickerContent>
@@ -98,17 +104,17 @@ function BlockInsertPicker() {
         ))}
       </PickerContent>
     </Picker>
-  )
+  );
 }
 
 function FooterPicker() {
-  const { footerItems, toggleFooterItem } = useBlockViewer()
-  const allKeys = Object.keys(FOOTER_ITEM_LABELS) as FooterItemKey[]
-  const enabled = allKeys.filter((k) => footerItems[k]).length
+  const { footerItems, toggleFooterItem } = useBlockViewer();
+  const allKeys = Object.keys(FOOTER_ITEM_LABELS) as FooterItemKey[];
+  const enabled = allKeys.filter((k) => footerItems[k]).length;
 
   return (
     <Picker>
-      <PickerTrigger label="Footer" disabled>
+      <PickerTrigger label="Footer">
         {enabledLabel(enabled, allKeys.length)}
       </PickerTrigger>
       <PickerContent>
@@ -123,17 +129,44 @@ function FooterPicker() {
         ))}
       </PickerContent>
     </Picker>
-  )
+  );
 }
 
-function MiscPicker() {
-  const { pluginItems, togglePluginItem } = useBlockViewer()
-  const allKeys = Object.keys(PLUGIN_ITEM_LABELS) as PluginItemKey[]
-  const enabled = allKeys.filter((k) => pluginItems[k]).length
+function ComponentPickerMenuPicker() {
+  const { componentPickerItems, toggleComponentPickerItem } = useBlockViewer();
+  const allKeys = Object.keys(
+    COMPONENT_PICKER_ITEM_LABELS,
+  ) as ComponentPickerItemKey[];
+  const enabled = allKeys.filter((k) => componentPickerItems[k]).length;
 
   return (
     <Picker>
-      <PickerTrigger label="Misc" disabled>
+      <PickerTrigger label="Component Picker">
+        {enabledLabel(enabled, allKeys.length)}
+      </PickerTrigger>
+      <PickerContent>
+        {allKeys.map((key) => (
+          <PickerCheckboxItem
+            key={key}
+            checked={componentPickerItems[key]}
+            onCheckedChange={() => toggleComponentPickerItem(key)}
+          >
+            {COMPONENT_PICKER_ITEM_LABELS[key]}
+          </PickerCheckboxItem>
+        ))}
+      </PickerContent>
+    </Picker>
+  );
+}
+
+function MiscPicker() {
+  const { pluginItems, togglePluginItem } = useBlockViewer();
+  const allKeys = Object.keys(PLUGIN_ITEM_LABELS) as PluginItemKey[];
+  const enabled = allKeys.filter((k) => pluginItems[k]).length;
+
+  return (
+    <Picker>
+      <PickerTrigger label="Misc">
         {enabledLabel(enabled, allKeys.length)}
       </PickerTrigger>
       <PickerContent>
@@ -148,7 +181,7 @@ function MiscPicker() {
         ))}
       </PickerContent>
     </Picker>
-  )
+  );
 }
 
 function BlockViewerSidebar() {
@@ -175,13 +208,17 @@ function BlockViewerSidebar() {
 
               <FieldSeparator />
 
+              <ComponentPickerMenuPicker />
+
+              <FieldSeparator />
+
               <MiscPicker />
             </FieldGroup>
           </div>
         </ScrollArea>
       </SidebarContent>
     </Sidebar>
-  )
+  );
 }
 
-export { BlockViewerSidebar }
+export { BlockViewerSidebar };

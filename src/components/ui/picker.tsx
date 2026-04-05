@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 
-import { Check, ChevronDown, ChevronRight } from "lucide-react"
-import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui"
+import { Check, ChevronDown, ChevronRight } from "lucide-react";
+import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 function Picker({
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Root>) {
-  return <DropdownMenuPrimitive.Root data-slot="picker" {...props} />
+  return <DropdownMenuPrimitive.Root data-slot="picker" {...props} />;
 }
 
 function PickerTrigger({
@@ -19,14 +19,14 @@ function PickerTrigger({
   children,
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Trigger> & {
-  label?: string
+  label?: string;
 }) {
   return (
     <DropdownMenuPrimitive.Trigger
       data-slot="picker-trigger"
       className={cn(
         "relative flex w-full items-center justify-between rounded-lg px-2.5 py-2 ring-1 ring-foreground/10 text-sm select-none hover:bg-muted focus-visible:outline-none focus-visible:ring-foreground/50 data-[state=open]:bg-muted transition-colors",
-        className
+        className,
       )}
       {...props}
     >
@@ -38,7 +38,7 @@ function PickerTrigger({
       </div>
       <ChevronDown className="size-3.5 shrink-0 text-muted-foreground" />
     </DropdownMenuPrimitive.Trigger>
-  )
+  );
 }
 
 function PickerContent({
@@ -57,18 +57,18 @@ function PickerContent({
         align={align}
         className={cn(
           "dark z-50 max-h-(--radix-dropdown-menu-content-available-height) w-(--radix-dropdown-menu-trigger-width) min-w-32 origin-(--radix-dropdown-menu-content-transform-origin) overflow-x-hidden overflow-y-auto rounded-lg p-1 text-popover-foreground shadow-md ring-1 ring-foreground/10 duration-100 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-[state=closed]:overflow-hidden data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95 animate-none! relative bg-popover/70 before:pointer-events-none before:absolute before:inset-0 before:-z-1 before:rounded-[inherit] before:backdrop-blur-2xl before:backdrop-saturate-150 **:data-[slot$=-item]:focus:bg-foreground/10 **:data-[slot$=-item]:data-highlighted:bg-foreground/10 **:data-[slot$=-separator]:bg-foreground/5",
-          className
+          className,
         )}
         {...props}
       />
     </DropdownMenuPrimitive.Portal>
-  )
+  );
 }
 
 function PickerGroup({
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Group>) {
-  return <DropdownMenuPrimitive.Group data-slot="picker-group" {...props} />
+  return <DropdownMenuPrimitive.Group data-slot="picker-group" {...props} />;
 }
 
 function PickerLabel({
@@ -76,7 +76,7 @@ function PickerLabel({
   inset,
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Label> & {
-  inset?: boolean
+  inset?: boolean;
 }) {
   return (
     <DropdownMenuPrimitive.Label
@@ -84,11 +84,11 @@ function PickerLabel({
       data-inset={inset}
       className={cn(
         "px-1.5 py-1 text-xs font-medium text-muted-foreground data-inset:pl-7",
-        className
+        className,
       )}
       {...props}
     />
-  )
+  );
 }
 
 function PickerItem({
@@ -97,8 +97,8 @@ function PickerItem({
   variant = "default",
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Item> & {
-  inset?: boolean
-  variant?: "default" | "destructive"
+  inset?: boolean;
+  variant?: "default" | "destructive";
 }) {
   return (
     <DropdownMenuPrimitive.Item
@@ -107,11 +107,11 @@ function PickerItem({
       data-variant={variant}
       className={cn(
         "relative flex cursor-default items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground data-inset:pl-7 data-[variant=destructive]:text-destructive data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-        className
+        className,
       )}
       {...props}
     />
-  )
+  );
 }
 
 function PickerCheckboxItem({
@@ -121,7 +121,7 @@ function PickerCheckboxItem({
   inset,
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.CheckboxItem> & {
-  inset?: boolean
+  inset?: boolean;
 }) {
   return (
     <DropdownMenuPrimitive.CheckboxItem
@@ -129,7 +129,7 @@ function PickerCheckboxItem({
       data-inset={inset}
       className={cn(
         "relative flex cursor-default items-center gap-1.5 rounded-md py-1 pr-8 pl-1.5 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground data-inset:pl-7 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-        className
+        className,
       )}
       checked={checked}
       {...props}
@@ -144,7 +144,7 @@ function PickerCheckboxItem({
       </span>
       {children}
     </DropdownMenuPrimitive.CheckboxItem>
-  )
+  );
 }
 
 function PickerRadioGroup({
@@ -155,7 +155,7 @@ function PickerRadioGroup({
       data-slot="picker-radio-group"
       {...props}
     />
-  )
+  );
 }
 
 function PickerRadioItem({
@@ -164,7 +164,7 @@ function PickerRadioItem({
   inset,
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.RadioItem> & {
-  inset?: boolean
+  inset?: boolean;
 }) {
   return (
     <DropdownMenuPrimitive.RadioItem
@@ -172,7 +172,7 @@ function PickerRadioItem({
       data-inset={inset}
       className={cn(
         "relative flex cursor-default items-center gap-1.5 rounded-md py-1 pr-8 pl-1.5 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground data-inset:pl-7 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-        className
+        className,
       )}
       {...props}
     >
@@ -186,7 +186,7 @@ function PickerRadioItem({
       </span>
       {children}
     </DropdownMenuPrimitive.RadioItem>
-  )
+  );
 }
 
 function PickerSeparator({
@@ -199,7 +199,7 @@ function PickerSeparator({
       className={cn("-mx-1 my-1 h-px bg-border", className)}
       {...props}
     />
-  )
+  );
 }
 
 function PickerShortcut({ className, ...props }: React.ComponentProps<"span">) {
@@ -208,17 +208,17 @@ function PickerShortcut({ className, ...props }: React.ComponentProps<"span">) {
       data-slot="picker-shortcut"
       className={cn(
         "ml-auto text-xs tracking-widest text-muted-foreground",
-        className
+        className,
       )}
       {...props}
     />
-  )
+  );
 }
 
 function PickerSub({
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Sub>) {
-  return <DropdownMenuPrimitive.Sub data-slot="picker-sub" {...props} />
+  return <DropdownMenuPrimitive.Sub data-slot="picker-sub" {...props} />;
 }
 
 function PickerSubTrigger({
@@ -227,7 +227,7 @@ function PickerSubTrigger({
   children,
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.SubTrigger> & {
-  inset?: boolean
+  inset?: boolean;
 }) {
   return (
     <DropdownMenuPrimitive.SubTrigger
@@ -235,14 +235,14 @@ function PickerSubTrigger({
       data-inset={inset}
       className={cn(
         "flex cursor-default items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground data-inset:pl-7 data-open:bg-accent data-open:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-        className
+        className,
       )}
       {...props}
     >
       {children}
       <ChevronRight className="ml-auto size-4" />
     </DropdownMenuPrimitive.SubTrigger>
-  )
+  );
 }
 
 function PickerSubContent({
@@ -254,11 +254,11 @@ function PickerSubContent({
       data-slot="picker-sub-content"
       className={cn(
         "dark z-50 min-w-[96px] origin-(--radix-dropdown-menu-content-transform-origin) overflow-hidden rounded-lg p-1 text-popover-foreground shadow-lg ring-1 ring-foreground/10 duration-100 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95 animate-none! relative bg-popover/70 before:pointer-events-none before:absolute before:inset-0 before:-z-1 before:rounded-[inherit] before:backdrop-blur-2xl before:backdrop-saturate-150",
-        className
+        className,
       )}
       {...props}
     />
-  )
+  );
 }
 
 export {
@@ -276,4 +276,4 @@ export {
   PickerSub,
   PickerSubTrigger,
   PickerSubContent,
-}
+};
