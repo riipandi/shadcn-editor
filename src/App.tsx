@@ -13,7 +13,7 @@ export function App() {
 
   return (
     <BlockViewerProvider>
-      <SidebarProvider defaultOpen={true}>
+      <SidebarProvider defaultOpen={true} className="bg-background text-foreground">
         <BlockViewerSidebar />
         <SidebarInset>
           <div className="flex flex-col gap-2 min-h-svh py-2 pl-1 pr-2 md:w-[calc(100vw-260px)]">
