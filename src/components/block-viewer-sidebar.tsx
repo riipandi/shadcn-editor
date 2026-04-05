@@ -200,11 +200,10 @@ function BlockViewerSidebar() {
               <FieldSeparator />
 
               <BlockFormatPicker />
-              <BlockInsertPicker />
 
               <FieldSeparator />
 
-              <FooterPicker />
+              <BlockInsertPicker />
 
               <FieldSeparator />
 
@@ -213,6 +212,10 @@ function BlockViewerSidebar() {
               <FieldSeparator />
 
               <MiscPicker />
+
+              <FieldSeparator />
+
+              <FooterPicker />
             </FieldGroup>
           </div>
         </ScrollArea>

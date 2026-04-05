@@ -276,9 +276,9 @@ export function Editor({
                     <CodeLanguageToolbarPlugin />
                   ) : (
                     <>
-                      {toolbarItems.fontSize && <FontFamilyToolbarPlugin />}
+                      {toolbarItems.fontFamily && <FontFamilyToolbarPlugin />}
                       {toolbarItems.fontSize && <FontSizeToolbarPlugin />}
-                      {toolbarItems.fontSize && (
+                      {(toolbarItems.fontFamily || toolbarItems.fontSize) && (
                         <Separator orientation="vertical" className="!h-7" />
                       )}
                       {toolbarItems.fontFormat && <FontFormatToolbarPlugin />}

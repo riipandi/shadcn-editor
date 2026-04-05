@@ -4,6 +4,7 @@ import * as React from "react";
 export type ToolbarItemKey =
   | "undoRedo"
   | "blockFormat"
+  | "fontFamily"
   | "fontSize"
   | "fontFormat"
   | "subSuper"
@@ -82,6 +83,7 @@ export type ComponentPickerItemKey =
 export const TOOLBAR_ITEM_LABELS: Record<ToolbarItemKey, string> = {
   undoRedo: "Undo / Redo",
   blockFormat: "Block Format",
+  fontFamily: "Font Family",
   fontSize: "Font Size",
   fontFormat: "Font Format",
   subSuper: "Subscript / Superscript",
@@ -166,7 +168,7 @@ export const COMPONENT_PICKER_ITEM_LABELS: Record<
   alignJustify: "Align Justify",
 };
 
-type BlockViewerContextType = {
+export type BlockViewerContextType = {
   toolbarItems: Record<ToolbarItemKey, boolean>;
   footerItems: Record<FooterItemKey, boolean>;
   pluginItems: Record<PluginItemKey, boolean>;
@@ -191,6 +193,7 @@ function BlockViewerProvider({ children }: { children: React.ReactNode }) {
   >({
     undoRedo: true,
     blockFormat: true,
+    fontFamily: true,
     fontSize: true,
     fontFormat: true,
     subSuper: true,

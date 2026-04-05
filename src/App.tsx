@@ -1,11 +1,19 @@
-import { BlockViewerProvider } from "./components/block-viewer-provider";
+import { useMemo } from "react";
+
+import { BlockViewerProvider, useBlockViewer } from "./components/block-viewer-provider";
 import { BlockViewerSidebar } from "./components/block-viewer-sidebar";
 import { BlockViewerToolbar } from "./components/block-viewer-toolbar";
 import { Editor } from "./components/blocks/editor-x";
-import CODE_SAMPLE from "./components/blocks/editor-x.tsx?raw";
 import { CodeViewer } from "./components/code-viewer";
 import { SidebarInset, SidebarProvider } from "./components/ui/sidebar";
 import { useSearchParams } from "./hooks/use-search-params";
+import { generateEditorCode } from "./lib/generate-editor-code";
+
+function GeneratedCodeViewer() {
+  const state = useBlockViewer();
+  const code = useMemo(() => generateEditorCode(state), [state]);
+  return <CodeViewer code={code} filename="editor-x.tsx" />;
+}
 
 export function App() {
   const [params] = useSearchParams({ view: "preview" });
@@ -24,7 +32,7 @@ export function App() {
             {view === "preview" ? (
               <Editor />
             ) : (
-              <CodeViewer code={CODE_SAMPLE} filename="editor-x.tsx" />
+              <GeneratedCodeViewer />
             )}
           </div>
         </SidebarInset>
