@@ -43,7 +43,7 @@ export function FontBackgroundToolbarPlugin() {
   useUpdateToolbarHandler($updateToolbar)
 
   const applyStyleText = useCallback(
-    (styles: Record<string, string>, skipHistoryStack?: boolean) => {
+    (styles: Record<string, string>, _skipHistoryStack?: boolean) => {
       activeEditor.update(
         () => {
           const selection = $getSelection()

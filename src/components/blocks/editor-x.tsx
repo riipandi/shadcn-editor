@@ -33,9 +33,6 @@ import { RichTextExtension } from "@lexical/rich-text"
 import { TableCellNode, TableNode, TableRowNode } from "@lexical/table"
 import {
   type EditorState,
-  type Klass,
-  type LexicalNode,
-  type LexicalNodeReplacement,
   type SerializedEditorState,
   configExtension,
   defineExtension,
@@ -136,24 +133,6 @@ import { validateUrl } from "@/components/editor/utils/url"
 import { Separator } from "@/components/ui/separator"
 import { TooltipProvider } from "@/components/ui/tooltip"
 
-export const nodes: ReadonlyArray<Klass<LexicalNode> | LexicalNodeReplacement> =
-  [
-    OverflowNode,
-    TableNode,
-    TableCellNode,
-    TableRowNode,
-    CodeNode,
-    CodeHighlightNode,
-    MentionNode,
-    EmojiNode,
-    LayoutContainerNode,
-    LayoutItemNode,
-    TweetNode,
-    YouTubeNode,
-    AutocompleteNode,
-    SpecialTextNode,
-  ]
-
 const placeholder = "Press / for commands..."
 const maxLength = 30
 
@@ -225,7 +204,22 @@ export function Editor({
         // html: buildHTMLConfig(),
         name: "@shadcn-editor",
         namespace: "Playground",
-        nodes,
+        nodes: [
+          OverflowNode,
+          TableNode,
+          TableCellNode,
+          TableRowNode,
+          CodeNode,
+          CodeHighlightNode,
+          MentionNode,
+          EmojiNode,
+          LayoutContainerNode,
+          LayoutItemNode,
+          TweetNode,
+          YouTubeNode,
+          AutocompleteNode,
+          SpecialTextNode,
+        ],
         $initialEditorState(editor) {
           if (editorSerializedState) {
             editor.parseEditorState(editorSerializedState)
@@ -235,7 +229,7 @@ export function Editor({
         },
         theme: editorTheme,
       }),
-    []
+    [editorState, editorSerializedState]
   )
 
   return (

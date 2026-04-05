@@ -62,7 +62,7 @@ export class AutocompleteNode extends TextNode {
     this.__uuid = uuid
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   updateDOM(
     _prevNode: this,
     _dom: HTMLElement,
@@ -71,7 +71,7 @@ export class AutocompleteNode extends TextNode {
     return false
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   exportDOM(_: LexicalEditor): DOMExportOutput {
     return { element: null }
   }
