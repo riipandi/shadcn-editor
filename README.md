@@ -8,7 +8,7 @@ npx shadcn@latest add @shadcn-editor/editor-x
 
 ## Usage
 
-```
+```ts
 import { CodeHighlightNode, CodeNode } from "@lexical/code";
 import { AutoFocusExtension, ClearEditorExtension, DecoratorTextExtension, HorizontalRuleExtension, SelectionAlwaysOnDisplayExtension } from "@lexical/extension";
 import { HistoryExtension } from "@lexical/history";
